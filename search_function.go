@@ -91,6 +91,6 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-	fmt.Printf("Id: %s, Name: %s, Prince: %s, Link: %s ,Discount: %s", offers_day.Id, offers_day.Name, offers_day.Price, offers_day.Discount)
+	fmt.Printf("Id: %s, Name: %s, Prince: %s, Link: %s, Discount: %s", offers_day.Id, offers_day.Name, offers_day.Price, offers_day.Discount)
 
 }
