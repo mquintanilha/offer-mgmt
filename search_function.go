@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"encoding/json"
+	"log"
+    "net/http"
 )
 
 // Data Structures
@@ -45,7 +47,7 @@ type Feed struct {
 	Store		string       `json:"store"`
 }
 
-func main() {
+func viewHandler(w http.ResponseWriter, r *http.Request) {
 
 	// const jsonData = `{
 	// 	"requestInfo": {
@@ -73,6 +75,9 @@ func main() {
 	// 	]
 
 	// }`
+	// title := r.URL.Path[len("/offer/"):]
+	// p, _ := loadPage(title)
+	// fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
 
 	const jsonData = `{
 		"id": "234512",
@@ -83,8 +88,7 @@ func main() {
 		"discount": 3.0
 	}`
 
-	data := []byte(jsonData)
-
+    data := []byte(jsonData)
 	offers_day := Feed{}
 	err := json.Unmarshal(data, &offers_day)
 		if err != nil {
@@ -93,4 +97,9 @@ func main() {
 		}
 	fmt.Printf("Id: %s, Name: %s, Prince: %s, Link: %s, Discount: %s", offers_day.Id, offers_day.Name, offers_day.Price, offers_day.Discount)
 
+}
+
+func main() {
+    http.HandleFunc("/offer/", viewHandler)
+    log.Fatal(http.ListenAndServe(":8080", nil))
 }
