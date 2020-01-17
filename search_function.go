@@ -7,90 +7,74 @@ import (
 
 // Data Structures
 
-type Track struct {
-	Top_traks	[]Track_info
-}
-
-type Track_info struct {
-    Info       []Request_info
-	Pag   	   []Pagination
-	Data       []Offers
-}
-
-type Request_info struct {
-	Status	string `json:"status"`
-	Message	string `json:"message"`
-}
-
-type Pagination struct {
-	Page		string `json:"page"`
-	Size		string `json:"size"`
-	Total_Size	string `json:"totalSize"`
-	Total_Page	string `json:"totalPage"`
-}
-
 type Offers struct {
-	Data_feed	[]Feed
+	Data_feed	Feed
 }
 
 type Feed struct {
-	Id			string       `json:"id"`
+
+	Category	Category
 	Name		string       `json:"name"`
-	Category	string       `json:"category"`
+	Price_From	float32		 `json:"priceFrom"`
+	Price		float32      `json:"price"`
+	Installment	Installment
+	Id			string       `json:"id"`
 	Link		string 	     `json:"link"`
 	Thumbnail	string       `json:"thumbnail"`
-	Price		float64      `json:"price"`
-	Discount	float64      `json:"discount"`
-	Installment	string       `json:"installment"`
-	Store		string       `json:"store"`
+	Store		Store
 }
 
+type Category struct {
+	Link	string
+	Id		int
+	Name	string
+}
+
+type Installment struct {
+	Value 		float32
+	Quantity 	int
+}
+
+type Store struct {
+	Thumbnail	string		`json:"thumbnail"`
+	Link 		string		`json:"link"`
+	Id			int			`json:"id"`
+	Name		string		`json:"name"`
+
+}
+
+
+
 func main() {
-
-	// const jsonData = `{
-	// 	"requestInfo": {
-	// 		"status": "",
-	// 		"message": ""
-	// 	},
-	// 	"pagination": {
-	// 		"page": 0,
-	// 		"size": 0,
-	// 		"totalSize": 0,
-	// 		"totalPage": 0
-	// 	},
-	// 	"offers": [
-	// 		{
-	// 			"id": "234512",
-	// 			"name": "Celular",
-	// 			"category": {},
-	// 			"link": "",
-	// 			"thumbnail": "",
-	// 			"price": 0,
-	// 			"discount": 0,
-	// 			"installment": {},
-	// 			"store": {}
-	// 		}
-	// 	]
-
-	// }`
-
-	const jsonData = `{
-		"id": "234512",
-		"name": "Celular",
-		"link": "",
-		"thumbnail": "",
-		"price": 10.0,
-		"discount": 3.0
+	jsonData := `{
+		"category": {
+			"link": "http://api.lomadee.com/v3/1578677161277ae2a08a2/category/_id/0?sourceId=22830830",
+			"id": 0,
+			"name": "Geral"
+		},
+		"name": "Rele Auxiliar 24v 5 Terminais 0a 0a Vdo Cod.ref. D09308 Volvo /iveco",
+		"priceFrom": 29.25,
+		"price": 29.25,
+		"installment": {
+			"value": 29.25,
+			"quantity": 1
+		},
+		"id": "62778060",
+		"link": "https://developer.lomadee.com/redir/validation/?sourceId=22830830&appToken=1578677161277ae2a08a2",
+		"thumbnail": "https://images-americanas.b2w.io/produtos/01/00/oferta/62778/0/62778063P1.jpg",
+		"store": {
+			"thumbnail": "https://www.lomadee.com/programas/BR/5632/imagemBox_80x60.png",
+			"link": "https://developer.lomadee.com/redir/validation/?sourceId=22830830&appToken=1578677161277ae2a08a2",
+			"id": 5632,
+			"name": "Americanas.com"
+		}
 	}`
 
-	data := []byte(jsonData)
-
 	offers_day := Feed{}
-	err := json.Unmarshal(data, &offers_day)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-	fmt.Printf("Id: %s, Name: %s, Prince: %s, Link: %s, Discount: %s", offers_day.Id, offers_day.Name, offers_day.Price, offers_day.Discount)
-
+	err := json.Unmarshal([]byte(jsonData), &offers_day)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("Quantity:%+v, Value:%+v", offers_day.Installment.Quantity, offers_day.Installment.Value)
 }
