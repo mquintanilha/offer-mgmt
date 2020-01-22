@@ -13,7 +13,10 @@ headers = {
     'cache-control': "no-cache"
     }
 
-url = "http://sandbox-api.lomadee.com/v3/1578677161277ae2a08a2/offer/_search?keyword="+ sys.argv[1]
+url = "http://sandbox-api.lomadee.com/v3/" + sys.argv[1] + "/offer/_search?keyword="+ sys.argv[2]
+
+
+# Were SYS.ARG[1] is TOKEN APPLICATION and SYS.ARGV[2] is CATEGORY FOR SEARCHE.
 
 response = requests.get(url, headers=headers, params=querystring)
 jsonRes = response.json()
@@ -24,6 +27,8 @@ with open('data.json', 'a') as outfile:
 x = json.load(open('data.json', 'r'))
 
 y = {"installment": { "value": "in stock", "quantity": "new" }}
+
+z = 
 
 f = csv.writer(open('import.csv', 'wb+'))
 
