@@ -28,8 +28,6 @@ x = json.load(open('data.json', 'r'))
 
 y = {"installment": { "value": "in stock", "quantity": "new" }}
 
-z = 
-
 f = csv.writer(open('import.csv', 'wb+'))
 
 f.writerow(['id', 'title', 'description', 'availability', 'condition', 'price', 'link', 'image_link', 'brand', 'additional_image_link', 'google_product_category'])
