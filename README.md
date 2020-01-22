@@ -9,7 +9,7 @@ Steps
 
 2. Execute a command: 
 
-`$ python offer-search.py <YOUR_CATEGORY>`
+`$ python offer-search.py <APP_TOKEN_LOMANDEE> <YOUR_CATEGORY>`
 
 Library python used for script:
 - requests
