@@ -3,7 +3,7 @@ import json
 import sys
 import csv
 
-querystring = {"sourceId":"22830830"}
+querystring = {"sourceId":"<AFFILIATE_ID>"}
 headers = {
     'Accept': "*/*",
     'Cache-Control': "no-cache",
@@ -16,7 +16,7 @@ headers = {
 url = "http://sandbox-api.lomadee.com/v3/" + sys.argv[1] + "/offer/_search?keyword="+ sys.argv[2]
 
 
-# Were SYS.ARG[1] is TOKEN APPLICATION and SYS.ARGV[2] is CATEGORY FOR SEARCHE.
+# Were SYS.ARG[1] is TOKEN APPLICATION and SYS.ARGV[2] is CATEGORY FOR SEARCH.
 
 response = requests.get(url, headers=headers, params=querystring)
 jsonRes = response.json()
@@ -30,7 +30,17 @@ y = {"installment": { "value": "in stock", "quantity": "new" }}
 
 f = csv.writer(open('import.csv', 'wb+'))
 
-f.writerow(['id', 'title', 'description', 'availability', 'condition', 'price', 'link', 'image_link', 'brand', 'additional_image_link', 'google_product_category'])
+f.writerow(['id', 
+            'title', 
+            'description', 
+            'availability', 
+            'condition', 
+            'price', 
+            'link', 
+            'image_link', 
+            'brand', 
+            'additional_image_link', 
+            'google_product_category'])
 
 for x in x:
     f.writerow([x['id'],
