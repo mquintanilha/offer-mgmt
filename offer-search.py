@@ -3,7 +3,7 @@ import json
 import sys
 import csv
 
-querystring = {"sourceId":"<ID_AFILIADO>"}
+querystring = {"sourceId":"<SOURCE_ID>"}
 
 host_sandbox = 'sandbox-api.lomadee.com'
 host_prod = 'api.lomadee.com'
@@ -45,16 +45,16 @@ z = {"g_id": 772}
 
 f = csv.writer(open('import.csv', 'wb+'))
 
-f.writerow(['id', 
-            'title', 
-            'description', 
-            'availability', 
-            'condition', 
-            'price', 
-            'link', 
-            'image_link', 
-            'brand', 
-            'additional_image_link', 
+f.writerow(['id',
+            'title',
+            'description',
+            'availability',
+            'condition',
+            'price',
+            'link',
+            'image_link',
+            'brand',
+            'additional_image_link',
             'google_product_category'])
 
 for x in x:
