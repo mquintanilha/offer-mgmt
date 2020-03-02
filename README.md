@@ -9,7 +9,11 @@ Steps
 
 2. Execute a command: 
 
-`$ python offer-search.py <APP_TOKEN_LOMANDEE> <YOUR_CATEGORY>`
+`$ python offer-search.py <APP_TOKEN_LOMANDEE> <YOUR_CATEGORY> <ENV>`
+
+When:
+
+ENV = prod / dev
 
 Library python used for script:
 - requests
