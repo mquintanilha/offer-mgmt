@@ -11,7 +11,7 @@ Steps
 
 `$ python offer-search.py <APP_TOKEN_LOMANDEE> <YOUR_CATEGORY> <ENV>`
 
-When:
+Where:
 
 ENV = prod / dev
 
